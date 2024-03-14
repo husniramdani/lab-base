@@ -1,6 +1,25 @@
 {
-  "extends": [
-    "next/core-web-vitals",
-    "plugin:storybook/recommended"
-  ]
+  "extends": ["next/core-web-vitals", "plugin:storybook/recommended"],
+  "plugins": ["unused-imports", "simple-import-sort"],
+  "rules": {
+    "unused-imports/no-unused-imports": "error",
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [
+          ["^\\u0000"],
+          ["^node:"],
+          ["^react$", "^((?!@/app)|@)?\\w"],
+          ["^./components/", "^@/components/"],
+          ["^\\."],
+          [
+            "^./lib/[^/]+/actions.ts$",
+            "^../lib/[^/]+/actions.ts$",
+            "^@/app/lib/[^/]+/actions.ts$"
+          ],
+          ["^./lib/types.ts", "^../lib/types.ts", "^@/app/lib/types.ts"]
+        ]
+      }
+    ]
+  }
 }
